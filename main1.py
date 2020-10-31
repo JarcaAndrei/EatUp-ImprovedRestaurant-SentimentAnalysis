@@ -17,7 +17,7 @@ from nltk.tokenize import word_tokenize
 import random
 import nltk
 import nltk.classify
-class Login:
+class Main1:
 	def __init__(self,master):
 		#self.tablemaker() # creating tables in the database for account and for meetings
 		self.master=master
@@ -44,6 +44,17 @@ class Login:
 		self.nextButton=Button(self.Logfr1, text='Next',font=('arial',20,'bold'),width=16,command=self.nextBtn)
 		self.nextButton.grid(row=2,column=0,pady=20)
 	def nextBtn(self):
+		a=self.txtUser.get()
+		conn=sqlite3.connect('timetable.db')
+        	c=conn.cursor()
+        	c.execute("SELECT *,oid FROM orders WHERE oid= " + 0)
+        	records= c.fetchall()
+		ok=0
+		for i in range(len(records)):
+			if records[i]==a:
+				ok=1
+		if ok==0:
+			return
 		self.master.destroy()
 		#we launch the actual thing 
 		root=tkinter.Tk()
@@ -93,7 +104,6 @@ class App(Tk):
 			tkinter.messagebox.showwarning("Warning","You haven't selected any item")
 			return
 		self.master.destroy()
-		#we launch the actual thing 
 		root=tkinter.Tk()
 		app=endBtn(root)
 		root.mainloop()
@@ -217,11 +227,11 @@ class revFinal(Tk):
 		tkinter.messagebox.showwarning("Warning",self.demo2)
 		'''self.master.destroy()
 		root=tkinter.Tk()
-		app=Login(root)
+		app=Main1(root)
 		root.mainloop()'''
 def main():
 	root=tkinter.Tk()
-	app=Login(root)
+	app=Main1(root)
 	root.mainloop()
 
 
