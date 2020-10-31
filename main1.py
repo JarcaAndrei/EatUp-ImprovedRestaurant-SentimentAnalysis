@@ -19,7 +19,6 @@ import nltk
 import nltk.classify
 class Main1:
 	def __init__(self,master):
-		#self.tablemaker() # creating tables in the database for account and for meetings
 		self.master=master
 		self.master.title("EatUp")
 		self.master.geometry("800x420+231+200")
@@ -125,7 +124,6 @@ class endBtn(Tk):
 		self.orderBtn.grid(row=3,column=0,pady=20,padx=20)
 	def Review(self):
 		self.master.destroy()
-		#we launch the actual thing 
 		root=tkinter.Tk()
 		app=revFinal(root)
 		root.mainloop()
